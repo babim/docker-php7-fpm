@@ -3,7 +3,7 @@ FROM babim/ubuntubase
 MAINTAINER "Duc Anh Babim" <ducanh.babim@yahoo.com>
 
 RUN apt-get update && \
-    apt-get install python-software-properties -y && add-apt-repository ppa:ondrej/php-7.0 -y && \
+    apt-get install python-software-properties -y && apt-get add-apt-repository ppa:ondrej/php-7.0 -y && \
     apt-get update && apt-get install -y \
     php7.0-fpm \
     php7.0-curl \
