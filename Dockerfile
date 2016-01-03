@@ -1,7 +1,5 @@
 FROM babim/ubuntubase
 
-MAINTAINER "Duc Anh Babim" <ducanh.babim@yahoo.com>
-
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install software-properties-common -yq && add-apt-repository ppa:ondrej/php-7.0 && \
     apt-get update && apt-get install -y --force-yes \
@@ -36,8 +34,6 @@ VOLUME ["/var/www"]
 WORKDIR /etc/php7.0/fpm
 
 ENV PHP_FPM_USER=www-data
-ENV LC_ALL en_US.UTF-8
-ENV TZ Asia/Ho_Chi_Minh
 
 ENTRYPOINT ["/usr/sbin/php7.0-fpm", "-F"]
 
