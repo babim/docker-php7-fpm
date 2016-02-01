@@ -34,7 +34,7 @@ RUN mkdir -p /var/www
 VOLUME ["/var/www"]
 
 # Define working directory.
-WORKDIR /etc/php7.0/fpm
+WORKDIR /etc/php/7.0/fpm
 
 ENV PHP_FPM_USER=www-data
 
