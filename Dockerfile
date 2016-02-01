@@ -37,7 +37,7 @@ WORKDIR /etc/php7.0/fpm
 
 ENV PHP_FPM_USER=www-data
 
-RUN echo "service php7.0-fpm start" > /etc/my_init.d/startup.sh
+RUN echo '#!/bin/bash' > /etc/my_init.d/startup.sh && echo "service php7.0-fpm start" >> /etc/my_init.d/startup.sh
 RUN chmod +x /etc/my_init.d/startup.sh
 
 EXPOSE 9000
