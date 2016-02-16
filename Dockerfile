@@ -33,12 +33,15 @@ RUN apt-get clean && \
 RUN mkdir -p /var/www
 VOLUME ["/var/www"]
 
+RUN mkdir -p /etc-start/php/7.0 \
+	&& cp -R /etc/php/7.0 /etc-start/php/7.0
+
+COPY startup.sh /etc/my_init.d/startup.sh
+RUN chmod +x /etc/my_init.d/startup.sh
+
 # Define working directory.
 WORKDIR /etc/php/7.0/fpm
 
 ENV PHP_FPM_USER=www-data
-
-RUN echo '#!/bin/bash' > /etc/my_init.d/startup.sh && echo "service php7.0-fpm start" >> /etc/my_init.d/startup.sh
-RUN chmod +x /etc/my_init.d/startup.sh
 
 EXPOSE 9000
