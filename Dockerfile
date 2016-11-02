@@ -1,4 +1,4 @@
-FROM babim/ubuntubaseinit
+FROM babim/ubuntubase
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install software-properties-common -yq && add-apt-repository ppa:ondrej/php -y && \
