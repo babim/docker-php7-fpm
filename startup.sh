@@ -5,3 +5,4 @@ then
 fi
 
 service php7.0-fpm start
+bash
