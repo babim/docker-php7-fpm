@@ -36,8 +36,10 @@ VOLUME ["/var/www", "/etc/php/7.0"]
 RUN mkdir -p /etc-start/php/7.0 \
 	&& cp -R /etc/php/7.0/* /etc-start/php/7.0
 
-COPY startup.sh /etc/my_init.d/startup.sh
-RUN chmod +x /etc/my_init.d/startup.sh
+COPY startup.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Define working directory.
 WORKDIR /etc/php/7.0/fpm
