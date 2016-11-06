@@ -1,4 +1,7 @@
 #!/bin/sh
+# start cron
+/usr/sbin/crond -b -L 8
+
 if [ -z "`ls /etc/php7`" ] 
 then
 	cp -R /etc-start/php7/* /etc/php7
