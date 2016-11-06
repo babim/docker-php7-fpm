@@ -1,4 +1,4 @@
-FROM babim/alpinebase
+FROM babim/alpinebase:cron
 
 RUN apk add --no-cache \
     php7-fpm php7-cgi php7-phpdbg php7-dev sqlite imagemagick \
