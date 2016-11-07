@@ -31,5 +31,6 @@ COPY startup.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["php-fpm7", "-F"]
 
 EXPOSE 9000
