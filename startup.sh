@@ -1,6 +1,4 @@
 #!/bin/sh
-# start cron
-/usr/sbin/crond -b -L 8
 
 if [ -z "`ls /etc/php7`" ] 
 then
