@@ -14,13 +14,13 @@ fi
     MAX_INPUT_TIME1=${MAX_INPUT_TIME:-3600}
     MAX_EXECUTION_TIME1=${MAX_EXECUTION_TIME:-3600}
 	
-	sed -i "s|;*date.timezone =.*|date.timezone = ${TIMEZONE}|i" /etc/php7/php.ini && \
-	sed -i "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" /etc/php7/php.ini && \
- 	sed -i "s|;*upload_max_filesize =.*|upload_max_filesize = ${MAX_UPLOAD}|i" /etc/php7/php.ini && \
-    	sed -i "s|;*max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD}|i" /etc/php7/php.ini && \
-    	sed -i "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST}|i" /etc/php7/php.ini && \
-    	sed -i "s/max_input_time = 60/max_input_time = 3600/" /etc/php7/php.ini && \
-	sed -i "s/max_execution_time = 30/max_execution_time = 3600/" /etc/php7/php.ini
+	sed -i "s|;*date.timezone =.*|date.timezone = $TIMEZONE|i" /etc/php7/php.ini && \
+	sed -i "s|;*memory_limit =.*|memory_limit = $PHP_MEMORY_LIMIT|i" /etc/php7/php.ini && \
+ 	sed -i "s|;*upload_max_filesize =.*|upload_max_filesize = $MAX_UPLOAD|i" /etc/php7/php.ini && \
+    	sed -i "s|;*max_file_uploads =.*|max_file_uploads = $PHP_MAX_FILE_UPLOAD|i" /etc/php7/php.ini && \
+    	sed -i "s|;*post_max_size =.*|post_max_size = $PHP_MAX_POST|i" /etc/php7/php.ini && \
+    	sed -i "s/max_input_time = 60/max_input_time = $MAX_INPUT_TIME/" /etc/php7/php.ini && \
+	sed -i "s/max_execution_time = 30/max_execution_time = $MAX_EXECUTION_TIME/" /etc/php7/php.ini
 
     sed -i "s/;opcache.enable=0/opcache.enable=0/" /etc/php7/php.ini && \
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf && \
