@@ -15,13 +15,13 @@ fi
     MAX_EXECUTION_TIME1=${MAX_EXECUTION_TIME:-3600}
 	
 	sed -i -E \
-	-e "s|;*date.timezone =.*|date.timezone = ${TIMEZONE}|i" \
-	-e "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" \
- 	-e "s|;*upload_max_filesize =.*|upload_max_filesize = ${MAX_UPLOAD}|i" \
-    	-e "s|;*max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD}|i" \
-    	-e "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST}|i" \
-    	-e "s/max_input_time = 60/max_input_time = ${MAX_INPUT_TIME}/" \
-	-e "s/max_execution_time = 30/max_execution_time = ${MAX_EXECUTION_TIME}/" \
+	-e "s|;*date.timezone =.*|date.timezone = ${TIMEZONE1}|i" \
+	-e "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT1}|i" \
+ 	-e "s|;*upload_max_filesize =.*|upload_max_filesize = ${MAX_UPLOAD1}|i" \
+    	-e "s|;*max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD1}|i" \
+    	-e "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST1}|i" \
+    	-e "s/max_input_time = 60/max_input_time = ${MAX_INPUT_TIME1}/" \
+	-e "s/max_execution_time = 30/max_execution_time = ${MAX_EXECUTION_TIME1}/" \
 	-e "s/;opcache.enable=0/opcache.enable=0/" \
 	/etc/php7/php.ini
 
