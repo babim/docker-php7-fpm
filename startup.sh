@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 if [ -z "`ls /etc/php/7.0`" ]; then cp -R /etc-start/php/5.6/* /etc/php/5.6; fi
 
    # Set environments
@@ -25,3 +26,4 @@ if [ -z "`ls /etc/php/7.0`" ]; then cp -R /etc-start/php/5.6/* /etc/php/5.6; fi
     sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php/7.0/fpm/pool.d/www.conf
 
+exec "$@"
