@@ -24,10 +24,10 @@ RUN apt-get clean && \
     rm -f /etc/dpkg/dpkg.cfg.d/02apt-speedup
 
 RUN mkdir -p /var/www
-VOLUME ["/var/www", "/etc/php/7.0"]
+VOLUME ["/var/www", "/etc/php"]
 
-RUN mkdir -p /etc-start/php/7.0 \
-	&& cp -R /etc/php/7.0/* /etc-start/php/7.0
+RUN mkdir -p /etc-start/php/ \
+	&& cp -R /etc/php/* /etc-start/php
 
 COPY startup.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
