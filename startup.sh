@@ -36,7 +36,7 @@ if [ -z "`ls /etc/php`" ]; then cp -R /etc-start/php/* /etc/php; fi
 
 # set ID docker run
 agid=${agid:-$auid}
-auser=${auser:-apache}
+auser=${auser:-www-data}
 
 if [[ -z "${auid}" ]]; then
   echo "start"
