@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 if [ -z "`ls /etc/php7`" ] 
 then
