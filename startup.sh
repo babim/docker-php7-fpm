@@ -32,9 +32,43 @@ fi
 	/etc/php7/php.ini
 
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf && \
-    sed -i '/^listen = /clisten = 9000' /etc/php5/php-fpm.d/www.conf && \
-    sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php7/php-fpm.d/www.conf && \
-    sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php7/php-fpm.d/www.conf && \
-    sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php7/php-fpm.d/www.conf
-    
+    sed -i '/^listen = /clisten = 9000' /etc/php5/fpm.d/www.conf && \
+    sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php7/fpm.d/www.conf && \
+    sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php7/fpm.d/www.conf && \
+    sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php7/fpm.d/www.conf
+
+# set ID docker run
+agid=${agid:-$auid}
+auser=${auser:-apache}
+
+if [[ -z "${auid}" ]]; then
+  echo "start"
+elif [[ "$auid" = "0" ]] || [[ "$aguid" == "0" ]]; then
+	echo "run in user root"
+	auser=root
+	sed -i -e "/^user = .*/cuser = $auser" /etc/php7/php-fpm.conf
+	sed -i -e "/^group = .*/cgroup = $auser" /etc/php7/php-fpm.conf
+else
+if id $auser >/dev/null 2>&1; then
+        echo "user exists"
+	sed -i -e "/^user = .*/cuser = $auser" /etc/php7/php-fpm.conf
+	sed -i -e "/^group = .*/cgroup = $auser" /etc/php7/php-fpm.conf
+	# usermod alpine
+		deluser $auser && delgroup $auser
+		addgroup -g $agid $auser && adduser -D -H -G $auser -s /bin/false -u $auid $auser
+	# usermod ubuntu/debian
+		#usermod -u $auid $auser
+		#groupmod -g $agid $auser
+else
+        echo "user does not exist"
+	# create user alpine
+	addgroup -g $agid $auser && adduser -D -H -G $auser -s /bin/false -u $auid $auser
+	# create user ubuntu/debian
+	#groupadd -g $agid $auser && useradd --system --uid $auid --shell /usr/sbin/nologin -g $auser $auser
+	sed -i -e "/^user = .*/cuser = $auser" /etc/php7/php-fpm.conf
+	sed -i -e "/^group = .*/cgroup = $auser" /etc/php7/php-fpm.conf
+fi
+
+fi
+
 exec "$@"
