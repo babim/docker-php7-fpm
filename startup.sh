@@ -33,4 +33,17 @@ if [ -z "`ls /etc/php`" ]; then cp -R /etc-start/php/* /etc/php; fi
     sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php/7.0/fpm/pool.d/www.conf
 
+# set ID docker run
+agid=${agid:-$auid}
+auser=www-data
+
+if [[ -z "${auid}" ]]; then
+  echo "start"
+elif [[ "$auid" = "0" ]] || [[ "$aguid" == "0" ]]; then
+ echo "can't run in Root user. Default user still run."
+else
+  usermod -u $auid $auser
+  groupmod -g $agid $auser
+fi
+
 exec "$@"
