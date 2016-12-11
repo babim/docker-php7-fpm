@@ -45,6 +45,8 @@ elif [[ "$auid" = "0" ]] || [[ "$aguid" == "0" ]]; then
 	export auser=root
 	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.0/fpm/php-fpm.conf
 	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.0/fpm/php-fpm.conf
+elif id $auid >/dev/null 2>&1; then
+        echo "UID exists. Please change UID"
 else
 if id $auser >/dev/null 2>&1; then
         echo "user exists"
