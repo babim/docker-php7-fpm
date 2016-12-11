@@ -31,11 +31,11 @@ fi
 	-e "s|^;*\(opcache.revalidate_freq\) *=.*|\1 = 60|" \
 	/etc/php7/php.ini
 
-    sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf && \
-    sed -i '/^listen = /clisten = 9000' /etc/php5/fpm.d/www.conf && \
-    sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php7/fpm.d/www.conf && \
-    sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php7/fpm.d/www.conf && \
-    sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php7/fpm.d/www.conf
+    sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf
+    #sed -i '/^listen = /clisten = 9000' /etc/php5/fpm.d/www.conf && \
+    #sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php7/fpm.d/www.conf && \
+    #sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php7/fpm.d/www.conf && \
+    #sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php7/fpm.d/www.conf
 
 # set ID docker run
 agid=${agid:-$auid}
@@ -48,6 +48,8 @@ elif [[ "$auid" = "0" ]] || [[ "$aguid" == "0" ]]; then
 	export auser=root
 	sed -i -e "/^user = .*/cuser = $auser" /etc/php7/php-fpm.conf
 	sed -i -e "/^group = .*/cgroup = $auser" /etc/php7/php-fpm.conf
+elif id $auid >/dev/null 2>&1; then
+        echo "UID exists. Please change UID"
 else
 if id $auser >/dev/null 2>&1; then
         echo "user exists"
