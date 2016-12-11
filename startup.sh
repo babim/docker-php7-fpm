@@ -22,14 +22,14 @@ fi
     	-e "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST1}|i" \
     	-e "s/max_input_time = 60/max_input_time = ${MAX_INPUT_TIME1}/" \
 	-e "s/max_execution_time = 30/max_execution_time = ${MAX_EXECUTION_TIME1}/" \
-	-e "s|^;*\(opcache.enable\) *=.*|\1 = 1|" \
-        -e "s|^;*\(opcache.enable_cli\) *=.*|\1 = 1|" \
-        -e "s|^;*\(opcache.fast_shutdown\) *=.*|\1 = 1|" \
-        -e "s|^;*\(opcache.interned_strings_buffer\) *=.*|\1 = 8|" \
-        -e "s|^;*\(opcache.max_accelerated_files\) *=.*|\1 = 4000|" \
-        -e "s|^;*\(opcache.memory_consumption\) *=.*|\1 = 128|" \
-	-e "s|^;*\(opcache.revalidate_freq\) *=.*|\1 = 60|" \
 	/etc/php7/php.ini
+	sed -i -e "s|^;*\(opcache.enable\) *=.*|\1 = 1|" /etc/php/7.0/*/php.ini
+        sed -i -e "s|^;*\(opcache.enable_cli\) *=.*|\1 = 1|" /etc/php/7.0/*/php.ini
+        sed -i -e "s|^;*\(opcache.fast_shutdown\) *=.*|\1 = 1|" /etc/php/7.0/*/php.ini
+        sed -i -e "s|^;*\(opcache.interned_strings_buffer\) *=.*|\1 = 8|" /etc/php/7.0/*/php.ini
+        sed -i -e "s|^;*\(opcache.max_accelerated_files\) *=.*|\1 = 4000|" /etc/php/7.0/*/php.ini
+        sed -i -e "s|^;*\(opcache.memory_consumption\) *=.*|\1 = 128|" /etc/php/7.0/*/php.ini
+	sed -i -e "s|^;*\(opcache.revalidate_freq\) *=.*|\1 = 60|" /etc/php/7.0/*/php.ini
 
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf
     #sed -i '/^listen = /clisten = 9000' /etc/php5/fpm.d/www.conf && \
