@@ -20,6 +20,16 @@ Volume:
 /var/www
 /etc/php
 ```
+Environment
+```
+TIMEZONE
+PHP_MEMORY_LIMIT
+MAX_UPLOAD
+PHP_MAX_FILE_UPLOAD
+PHP_MAX_POST
+MAX_INPUT_TIME
+MAX_EXECUTION_TIME
+```
 with environment ID:
 ```
 auid = user id
