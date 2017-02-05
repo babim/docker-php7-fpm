@@ -3,7 +3,6 @@
 if [ -z "`ls /etc/php7`" ] 
 then
 	cp -R /etc-start/php7/* /etc/php7
-fi
 
     # Set environments
     TIMEZONE1=${TIMEZONE:-Asia/Ho_Chi_Minh}
@@ -36,6 +35,7 @@ fi
     #sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php7/fpm.d/www.conf && \
     #sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php7/fpm.d/www.conf && \
     #sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php7/fpm.d/www.conf
+fi
 
 # set ID docker run
 agid=${agid:-$auid}
