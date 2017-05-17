@@ -15,6 +15,9 @@ RUN apt-get update && \
 # Fix run suck
 RUN mkdir -p /run/php/
 
+# install option for webapp (owncloud)
+RUN apt-get install -y --force-yes smbclient ffmpeg ghostscript openexr openexr openexr libxml2 gamin
+
 RUN apt-get clean && \
     apt-get autoclean && \
     apt-get autoremove -y && \
