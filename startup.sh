@@ -20,20 +20,20 @@ if [ -z "`ls /etc/php`" ]; then
     	-e "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST1}|i" \
     	-e "s/max_input_time = 60/max_input_time = ${MAX_INPUT_TIME1}/" \
 	-e "s/max_execution_time = 30/max_execution_time = ${MAX_EXECUTION_TIME1}/" \
-	/etc/php/7.0/*/php.ini
-	sed -i -e "s|^;*\(opcache.enable\) *=.*|\1 = 1|" /etc/php/7.0/*/php.ini
-        sed -i -e "s|^;*\(opcache.enable_cli\) *=.*|\1 = 1|" /etc/php/7.0/*/php.ini
-        sed -i -e "s|^;*\(opcache.fast_shutdown\) *=.*|\1 = 1|" /etc/php/7.0/*/php.ini
-        sed -i -e "s|^;*\(opcache.interned_strings_buffer\) *=.*|\1 = 8|" /etc/php/7.0/*/php.ini
-        sed -i -e "s|^;*\(opcache.max_accelerated_files\) *=.*|\1 = 4000|" /etc/php/7.0/*/php.ini
-        sed -i -e "s|^;*\(opcache.memory_consumption\) *=.*|\1 = 128|" /etc/php/7.0/*/php.ini
-	sed -i -e "s|^;*\(opcache.revalidate_freq\) *=.*|\1 = 60|" /etc/php/7.0/*/php.ini
+	/etc/php/7.1/*/php.ini
+	sed -i -e "s|^;*\(opcache.enable\) *=.*|\1 = 1|" /etc/php/7.1/*/php.ini
+        sed -i -e "s|^;*\(opcache.enable_cli\) *=.*|\1 = 1|" /etc/php/7.1/*/php.ini
+        sed -i -e "s|^;*\(opcache.fast_shutdown\) *=.*|\1 = 1|" /etc/php/7.1/*/php.ini
+        sed -i -e "s|^;*\(opcache.interned_strings_buffer\) *=.*|\1 = 8|" /etc/php/7.1/*/php.ini
+        sed -i -e "s|^;*\(opcache.max_accelerated_files\) *=.*|\1 = 4000|" /etc/php/7.1/*/php.ini
+        sed -i -e "s|^;*\(opcache.memory_consumption\) *=.*|\1 = 128|" /etc/php/7.1/*/php.ini
+	sed -i -e "s|^;*\(opcache.revalidate_freq\) *=.*|\1 = 60|" /etc/php/7.1/*/php.ini
 	
 
-    sed -i '/^listen = /clisten = 9000' /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php/7.0/fpm/pool.d/www.conf
+    sed -i '/^listen = /clisten = 9000' /etc/php/7.1/fpm/pool.d/www.conf && \
+    sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php/7.1/fpm/pool.d/www.conf && \
+    sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php/7.1/fpm/pool.d/www.conf && \
+    sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php/7.1/fpm/pool.d/www.conf
 fi
 
 # set ID docker run
@@ -45,15 +45,15 @@ if [[ -z "${auid}" ]]; then
 elif [[ "$auid" = "0" ]] || [[ "$aguid" == "0" ]]; then
 	echo "run in user root"
 	export auser=root
-	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.0/fpm/php-fpm.conf
-	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.0/fpm/php-fpm.conf
+	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.1/fpm/php-fpm.conf
+	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.1/fpm/php-fpm.conf
 elif id $auid >/dev/null 2>&1; then
         echo "UID exists. Please change UID"
 else
 if id $auser >/dev/null 2>&1; then
         echo "user exists"
-	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.0//fpm/php-fpm.conf
-	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.0/fpm/php-fpm.conf
+	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.1//fpm/php-fpm.conf
+	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.1/fpm/php-fpm.conf
 	# usermod alpine
 		#deluser $auser && delgroup $auser
 		#addgroup -g $agid $auser && adduser -D -H -G $auser -s /bin/false -u $auid $auser
@@ -66,8 +66,8 @@ else
 	#addgroup -g $agid $auser && adduser -D -H -G $auser -s /bin/false -u $auid $auser
 	# create user ubuntu/debian
 	groupadd -g $agid $auser && useradd --system --uid $auid --shell /usr/sbin/nologin -g $auser $auser
-	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.0/fpm/php-fpm.conf
-	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.0/fpm/php-fpm.conf
+	sed -i -e "/^user = .*/cuser = $auser" /etc/php/7.1/fpm/php-fpm.conf
+	sed -i -e "/^group = .*/cgroup = $auser" /etc/php/7.1/fpm/php-fpm.conf
 fi
 
 fi
