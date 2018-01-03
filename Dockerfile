@@ -30,7 +30,7 @@ RUN mkdir -p /var/www
 VOLUME ["/var/www", "/etc/php"]
 
 RUN mkdir -p /etc-start/php \
-	&& cp -R /etc/php/* /etc-start/php
+	&& cp -R /etc/php/* /etc-start/php/
 
 COPY startup.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
