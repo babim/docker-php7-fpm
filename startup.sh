@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 if [ -z "`ls /etc/php`" ]; then 
-	cp -R /etc-start/php/* /etc/php
+	cp -R /etc-start/php/* /etc/php/
 
    # Set environments
     TIMEZONE1=${TIMEZONE:-Asia/Ho_Chi_Minh}
