@@ -10,7 +10,8 @@ RUN apt-get update && \
     php7.1-sqlite3 php7.1-mysql php7.1-opcache php7.1-bz2 php7.1-mbstring php7.1-zip php-apcu php-imagick \
     php-memcached php-pear libsasl2-dev libssl-dev libsslcommon2-dev libcurl4-openssl-dev \
     php7.1-gmp php7.1-xml php7.1-bcmath php7.1-enchant php7.1-soap php7.1-xsl && \
-    apt-get purge -y apache* && apt-get autoremove --purge -y
+    apt-get purge -y apache* && apt-get autoremove --purge -y && \
+    ln -sf /usr/bin/php7.1 /etc/alternatives/php
 
 # Fix run suck
 RUN mkdir -p /run/php/
