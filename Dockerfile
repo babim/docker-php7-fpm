@@ -38,7 +38,7 @@ RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 #CMD ["/entrypoint.sh"]
-CMD ["php-fpm7.0", "-F"]
+#CMD ["php-fpm7.0", "-F"]
 
 # Define working directory.
 WORKDIR /etc/php/7.0/fpm
