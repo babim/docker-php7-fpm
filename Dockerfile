@@ -1,5 +1,9 @@
 FROM babim/alpinebase:edge
 
+## alpine linux
+RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    chmod 755 /option.sh && pk del wget
+
 RUN apk add --no-cache \
     php7-fpm php7-cgi php7-phpdbg php7-dev sqlite imagemagick \
     php7-curl php7-gd php7-imap php7-intl php7-ldap php7-mcrypt php7-odbc php7-exif php7-xml \
