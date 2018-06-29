@@ -1,4 +1,4 @@
-FROM babim/ubuntubase
+FROM babim/ubuntubase:16.04
 
 # Download option
 RUN apt-get update && \
