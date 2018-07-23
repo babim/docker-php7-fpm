@@ -45,9 +45,6 @@ ENTRYPOINT ["/entrypoint.sh"]
 #CMD ["/entrypoint.sh"]
 #CMD ["php-fpm7.0", "-F"]
 
-# Define working directory.
-WORKDIR /etc/php/7.0/fpm
-
 ENV PHP_FPM_USER=www-data
 
 EXPOSE 9000
