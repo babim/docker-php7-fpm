@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 export TERM=xterm
 
 # copy config0
@@ -77,3 +77,5 @@ fi
 
 # option with entrypoint
 if [ -f "/option.sh" ]; then /option.sh; fi
+
+exec "$@"
