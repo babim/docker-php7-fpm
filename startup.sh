@@ -77,5 +77,3 @@ fi
 
 # option with entrypoint
 if [ -f "/option.sh" ]; then /option.sh; fi
-
-php-fpm7.0 -F

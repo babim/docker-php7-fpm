@@ -42,8 +42,7 @@ COPY startup.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["/entrypoint.sh"]
-#CMD ["php-fpm7.0", "-F"]
+CMD ["php-fpm7.0", "-F"]
 
 ENV PHP_FPM_USER=www-data
 
