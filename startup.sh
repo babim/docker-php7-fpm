@@ -1,5 +1,7 @@
 #!/bin/bash
 export TERM=xterm
+
+# copy php
 if [ -z "`ls /etc/php`" ]; then 
 	cp -R /etc-start/php/* /etc/php/
 
@@ -76,5 +78,3 @@ fi
 
 # option with entrypoint
 if [ -f "/option.sh" ]; then /option.sh; fi
-
-php-fpm7.1 -F
