@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 export TERM=xterm
+
 if [ -z "`ls /etc/php`" ]; then 
 	cp -R /etc-start/php/* /etc/php/
 
@@ -31,7 +32,6 @@ if [ -z "`ls /etc/php`" ]; then
         sed -i -e "s|^;*\(opcache.memory_consumption\) *=.*|\1 = 128|" /etc/php/7.2/*/php.ini
 	sed -i -e "s|^;*\(opcache.revalidate_freq\) *=.*|\1 = 60|" /etc/php/7.2/*/php.ini
 	
-
     sed -i '/^listen = /clisten = 9000' /etc/php/7.2/fpm/pool.d/www.conf && \
     sed -i '/^listen.allowed_clients/c;listen.allowed_clients =' /etc/php/7.2/fpm/pool.d/www.conf && \
     sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php/7.2/fpm/pool.d/www.conf && \
@@ -77,4 +77,4 @@ fi
 # option with entrypoint
 if [ -f "/option.sh" ]; then /option.sh; fi
 
-php-fpm7.2 -F
+exec "$@"
