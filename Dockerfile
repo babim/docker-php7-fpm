@@ -8,9 +8,8 @@ RUN apt-get update && \
 ENV PHP_VERSION 7.2
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install curl software-properties-common -yq && \
-    curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20PHP%20install/php-repo-ubuntu.sh | bash && \
     apt-get update && touch /PHPFPM && \
-    curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20PHP%20install/php7.2.sh | bash
+    curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20PHP%20install/php_install.sh | bash
 
 RUN apt-get clean && \
     apt-get autoclean && \
