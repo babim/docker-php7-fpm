@@ -9,7 +9,7 @@ ENV PHP_VERSION 7.1
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install curl software-properties-common -yq && \
     apt-get update && touch /PHPFPM && \
-    wget -O - https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20PHP%20install/php_install.sh | bash
+    wget --no-check-certificate -O - https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20PHP%20install/php_install.sh | bash
 
 RUN apt-get clean && \
     apt-get autoclean && \
