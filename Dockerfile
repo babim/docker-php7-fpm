@@ -23,7 +23,7 @@ RUN mkdir -p /var/www
 VOLUME ["/var/www", "/etc/php"]
 
 ENTRYPOINT ["/start.sh"]
-CMD ["php-fpm7.2", "-F"]
+CMD ["supervisord", "-nc", "/etc/supervisor/supervisord.conf"]
 
 ENV PHP_FPM_USER=www-data
 
